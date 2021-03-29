@@ -9,6 +9,6 @@ class hinhanhweb extends Model
 {
     use HasFactory;
     protected $table = 'hinhanhweb';
-    protected $fillable = ['id', 'tenhienthi', 'hinhanhvidu','mota'];
+    protected $fillable = ['id', 'tentrang_id', 'hienthi_id','tenanh','mota'];
     public $timestamps = true;
 }

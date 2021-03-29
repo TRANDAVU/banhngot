@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\adminController;
+use App\Http\Controllers\userController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +21,10 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('index', [adminController::class, 'getindex'])->name('admin.adminController.index');
+
+    Route::get('index-users', [userController::class, 'getindex'])->name('admin.userController.index');
+    Route::get('changs-users', [userController::class, 'getChang'])->name('admin.userController.chang');
+});

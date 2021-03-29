@@ -13,7 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(
+            \App\Repositories\admin\qlUser\userRepositoryInterface::class,
+            \App\Repositories\admin\qlUser\userRepository::class
+        );
     }
 
     /**
@@ -23,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer(['layouts.Admin_master'],function($view){
+            $menus=config('menu');
+            $view->with('menus',$menus);
+        });
     }
 }
