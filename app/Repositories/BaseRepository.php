@@ -33,9 +33,9 @@ abstract class BaseRepository implements RepositoryInterface
         return $this->model->all();
     }
 
-    public function find($id)
+    public function find($slug)
     {
-        $result = $this->model->find($id);
+        $result = $this->model->where('slug',$slug);
 
         return $result;
     }

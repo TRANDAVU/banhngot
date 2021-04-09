@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
-
+    
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
@@ -201,7 +201,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                     @foreach($menus as $menu)
-                        @php $class = !empty($menu['items']) ? 'menu-open' : '' @endphp
+                        @php $class = !empty($menu['items']) ? 'treeview' : '' @endphp
                         <li class="nav-item {{$class}}">
                             <a href="{{ Route::has($menu['route']) ? route($menu['route']) : '#' }}" class="nav-link active">
                                 <i class="nav-icon fas {{ $menu['ico'] }}"></i>
@@ -881,6 +881,7 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="dist/js/pages/dashboard2.js"></script>
     <script src="plugins/jquery/jquery.min.js"></script>
+    
     @yield('script')
    
 </body>

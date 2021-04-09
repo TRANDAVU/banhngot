@@ -3,49 +3,38 @@
 @section('title', 'Quản lý người dùng')
 
 @section('content')
-<div class="content-wrapper">
-    <x-admin.table name="Name" email="Email" address="Address" sdt="Sdt" level="Level" title="Thông tin người dùng" :user="$user"></x-admin.table>
-</div>
+    <div class="content-wrapper">
+        <x-admin.table :colums="$colums" title='Thông tin người dùng'>
+            <x-slot name='table'>
+                @foreach ($user as $user)
+                    <tr>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}
+                        </td>
+                        <td>{{ $user->address }}</td>
+                        <td> {{ $user->sdt }}</td>
+                        <td>{{ $user->level->level_ten }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-success btn-flat">Action</button>
+                                <button type="button" class="btn btn-success btn-flat dropdown-toggle dropdown-icon"
+                                    data-toggle="dropdown">
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <div class="dropdown-menu" role="menu">
+                                    <a class="dropdown-item"
+                                        href="{{ route('admin.userController.edit', $user->slug) }}">Thay đổi</a>
+                                    <a class="dropdown-item" onclick="return confirm('Are you sure?')"
+                                        href="{{ route('admin.userController.getDelete', $user->slug) }}">Xóa</a>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                @endforeach
+            </x-slot>
+        </x-admin.table>
+    </div>
 @stop
 
-@section('script')
-<!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables  & Plugins -->
-<script src="plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="plugins/jszip/jszip.min.js"></script>
-<script src="plugins/pdfmake/pdfmake.min.js"></script>
-<script src="plugins/pdfmake/vfs_fonts.js"></script>
-<script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
-<!-- Page specific script -->
-<script>
-    $(function() {
-        $("#example1").DataTable({
-            "responsive": true,
-            "lengthChange": false,
-            "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
-    });
-</script>
-@stop
+@extends('layouts.kichban')

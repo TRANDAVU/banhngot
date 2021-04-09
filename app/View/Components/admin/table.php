@@ -4,6 +4,7 @@ namespace App\View\Components\admin;
 
 use Illuminate\View\Component;
 
+
 class table extends Component
 {
     /**
@@ -11,23 +12,14 @@ class table extends Component
      *
      * @return void
      */
-    public $name;
-    public $email;
-    public $address;
-    public $sdt;
-    public $level;
+    public array $colums;
     public $title;
-    public $user;
-    
-    public function __construct($name,$email,$address,$sdt,$level,$title,$user)
+
+
+    public function __construct($colums, $title)
     {
-        $this->name=$name;
-        $this->email=$email;
-        $this->address=$address;
-        $this->sdt=$sdt;
-        $this->level=$level;
-        $this->title=$title;
-        $this->user=$user;
+        $this->colums = $colums;
+        $this->title = $title;
     }
 
     /**

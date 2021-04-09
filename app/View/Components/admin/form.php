@@ -11,9 +11,12 @@ class form extends Component
      *
      * @return void
      */
-    public function __construct()
+    public $title;
+    public $user;
+    public function __construct($title,$user)
     {
-        //
+        $this->title=$title;
+        $this->user=$user;
     }
 
     /**

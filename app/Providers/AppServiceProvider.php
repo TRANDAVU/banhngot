@@ -17,6 +17,21 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\admin\qlUser\userRepositoryInterface::class,
             \App\Repositories\admin\qlUser\userRepository::class
         );
+
+        $this->app->singleton(
+            \App\Repositories\admin\level\levelRepositoryInterface::class,
+            \App\Repositories\admin\level\levelRepository::class
+        );
+
+        $this->app->singleton(
+            \App\Repositories\admin\permision\permisionRepositoryInterface::class,
+            \App\Repositories\admin\permision\permisionRepository::class
+        );
+
+        $this->app->singleton(
+            \App\Repositories\admin\product\productRepositoryInterface::class,
+            \App\Repositories\admin\product\productRepository::class
+        );
     }
 
     /**

@@ -1,0 +1,13 @@
+composer require rappasoft/laravel-livewire-tables
+
+@foreach($data as $data)
+                <tr>
+                    <td>{{$data->cot1}}</td>
+                    <td>{{$data->cot2}}
+                    </td>
+                    <td>{{$data->cot3}}</td>
+                    <td> {{$data->cot4}}</td>
+                    <td>{{$data->cot5}}</td>
+                    <td>a</td>
+                </tr>
+                @endforeach
