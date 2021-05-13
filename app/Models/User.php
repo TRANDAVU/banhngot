@@ -9,7 +9,11 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-
+use App\Models\level;
+use App\Models\comments;
+use App\Models\emaildangky;
+use App\Models\khachhang;
+use Illuminate\Database\Eloquent\SoftDeletes;
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -23,10 +27,19 @@ class User extends Authenticatable
      *
      * @var array
      */
+    use Notifiable,
+        SoftDeletes;
+
     protected $fillable = [
         'name',
         'email',
         'password',
+        'slug',
+        'provider', 
+        'provider_id',
+        'google_id',
+        'avatar',
+        'level_id'
     ];
 
     /**
@@ -58,4 +71,29 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function level()
+    {
+        return $this->belongsTo(level::class,'level_id','id');
+    }
+
+    public function comments()
+    {
+        return $this->belongsTo(comments::class,'user_id','id');
+    }
+
+    public function User()
+    {
+        return $this->hasMany(User::class,'user_id','id');
+    }
+
+    public function emaildangky()
+    {
+        return $this->belongsTo(emaildangky::class,'user_id','id');
+    }
+
+    public function khachhang()
+    {
+        return $this->belongsTo(khachhang::class,'user_id','id');
+    }
 }
